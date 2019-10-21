@@ -21,9 +21,9 @@
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
 
-  <div fxFlex>
-    <mat-grid-list cols="2" rowHeight="200px">
-      <mat-grid-tile *ngFor="let dish of dishes">
+  <div fxFlex  *ngIf="dishes">
+    <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
   
         <img height="200px" src={{dish.image}} alt={{dish.name}}>
         <mat-grid-tile-footer>
@@ -32,5 +32,9 @@
       </mat-grid-tile>
     </mat-grid-list>
   </div>
+  <div [hidden]="dishes">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
 </div>
-<app-dishdetail></app-dishdetail>
+<!-- <app-dishdetail [dish] = "selectedDish" ></app-dishdetail> -->
+<!-- <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]"> -->
